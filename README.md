@@ -6,7 +6,7 @@ Abstract
 
 >   Reference architecture diagram is showed below:
 
-![](media/13da02e1397c4873ac3eca589cf8ad35.tiff)
+![](media/13da02e1397c4873ac3eca589cf8ad35.png)
 
 Introduction
 ============
@@ -97,7 +97,7 @@ Solution Overview
 
 -   Service switchovers to Alibaba Cloud ES instance.
 
-Pre-Requisites 
+Pre-Requisites
 ===============
 
 ElasticSearch service
@@ -180,9 +180,9 @@ Manual Snapshot Prerequisites on AWS
 
 >   In AWS IAM Console, you can find **Trust Relationship** deital here:
 
-![](media/8294d97a833740011ef02621d9b8148a.tiff)
+![](media/8294d97a833740011ef02621d9b8148a.png)
 
-![](media/f94af72e3a91cbf2f6a3a10e95fd411f.tiff)
+![](media/f94af72e3a91cbf2f6a3a10e95fd411f.png)
 
 >   When you create an AWS service role using the IAM console, Amazon ES is not
 >   included in the **Select role type** list. However, you can still create the
@@ -249,15 +249,15 @@ Manual Snapshot Prerequisites on AWS
 
 >   You need paste it here:
 
-![](media/18997183f04a7760d3af3c0d3a1538c0.tiff)
+![](media/18997183f04a7760d3af3c0d3a1538c0.png)
 
 >   Another readable view:
 
-![](media/11883dc7d988bdbf91cea0a0f282e4f8.tiff)
+![](media/11883dc7d988bdbf91cea0a0f282e4f8.png)
 
 ### Attach IAM Policy to IAM Role
 
-![](media/84f1c5545df547e1d118e73db10e9505.tiff)
+![](media/84f1c5545df547e1d118e73db10e9505.png)
 
 Registering a Manual Snapshot Directory
 =======================================
@@ -323,7 +323,7 @@ Execute Python Client to Register Snapshot Directory
 
 >   *GET \_snapshot*
 
-![](media/a48b94be7b609e7b82777ce00aabea5f.tiff)
+![](media/a48b94be7b609e7b82777ce00aabea5f.png)
 
 Snapshot and Restore for the first time
 =======================================
@@ -349,11 +349,11 @@ Take a snapshot manually on AWS ES
 
 >   *GET \_snapshot/ eric-snapshot-repository/snapshot_movies_1*
 
-![](media/dc2081f678ba0cbc5fb6f5324e9310ff.tiff)
+![](media/dc2081f678ba0cbc5fb6f5324e9310ff.png)
 
 >   Check snapshot files on the AWS S3 console:
 
-![](media/c1688f6618baf43f0a24ba45443ffc13.tiff)
+![](media/c1688f6618baf43f0a24ba45443ffc13.png)
 
 Pull snapshot data from AWS S3 to Alibaba Cloud OSS
 ---------------------------------------------------
@@ -366,7 +366,7 @@ Pull snapshot data from AWS S3 to Alibaba Cloud OSS
 
 >   After data transfer, check stored snapshot data on OSS console:
 
-![](media/fb01981a005d9528de7779d3171dcf48.tiff)
+![](media/fb01981a005d9528de7779d3171dcf48.png)
 
 1.  Restore snapshot to Alibaba Cloud ES instance
 
@@ -397,7 +397,7 @@ Pull snapshot data from AWS S3 to Alibaba Cloud OSS
 
 >   *}*
 
-![](media/1514294f52d7b1852db6f94d4e695a93.tiff)
+![](media/1514294f52d7b1852db6f94d4e695a93.png)
 
 >   After creating the snapshot directory, check the snapshot status with
 >   snapshot name **snapshot_movies_1** which is assigned in AWS ES manual
@@ -405,7 +405,7 @@ Pull snapshot data from AWS S3 to Alibaba Cloud OSS
 
 >   *GET \_snapshot/eric-snapshot-repository/snapshot_movies_1*
 
-![](media/c9a3d4d113928c07065a40925dbdf451.tiff)
+![](media/c9a3d4d113928c07065a40925dbdf451.png)
 
 >   *\*\* Please record the start/end time of this snapshot operation, it will
 >   be used in future incremental snapshot data transfer by Alibaba Cloud
@@ -429,12 +429,12 @@ Pull snapshot data from AWS S3 to Alibaba Cloud OSS
 
 >   *GET movies/_recovery*
 
-![](media/6f7c5c53b58552614370959c779b2fca.tiff)
+![](media/6f7c5c53b58552614370959c779b2fca.png)
 
 >   Check the availability of index movies on **KibanaDiscover**, we can see
 >   there exists 3 records in the index movies, as same as AWS ES instance.
 
-![](media/0a9f4d8e16615b42daba8299f02a1e03.tiff)
+![](media/0a9f4d8e16615b42daba8299f02a1e03.png)
 
 Snapshot and Restore for the last time
 ======================================
@@ -445,7 +445,7 @@ Create some sample data on AWS ES index movies
 >   From above, we know that there are only 3 records in the index movies, so we
 >   insert another 2 records.
 
-![](media/2f8f2e58d03d03851839a91a9116c796.tiff)
+![](media/2f8f2e58d03d03851839a91a9116c796.png)
 
 >   or you can use request: *GET movies/_count*
 
@@ -454,11 +454,11 @@ Take another snapshot manually
 
 >   Refer to chapter 5.1, then check the snapshot status:
 
-![](media/b0a06a3bf4188169e7eb401012ecec32.tiff)
+![](media/b0a06a3bf4188169e7eb401012ecec32.png)
 
 >   Check files on S3 bucket:
 
-![](media/4bcf3dff243dc5d5f8df452be4651515.tiff)
+![](media/4bcf3dff243dc5d5f8df452be4651515.png)
 
 >   If you check the folder **indices**, you can also find some differences.
 
@@ -482,11 +482,11 @@ Pull incremental snapshot data from AWS S3 to Alibaba Cloud OSS
 
 -   On Alibaba Cloud OSS bucket
 
-![](media/887a114bb4cd33529c07db76668515bb.tiff)
+![](media/887a114bb4cd33529c07db76668515bb.png)
 
 -   On AWS S3 bucket
 
-![](media/2b32ee7b79b1902c5d7e2c609a22d61b.tiff)
+![](media/2b32ee7b79b1902c5d7e2c609a22d61b.png)
 
 Restore incremental snapshot
 ----------------------------
@@ -511,7 +511,7 @@ Restore incremental snapshot
 >   After restore procedure complete, we can see the count(5) of documents in
 >   the index movies is as same as it is in AWS ES instance.
 
-![](media/a6d84d2dde16ed06b0e16ca4e840d3c3.tiff)
+![](media/a6d84d2dde16ed06b0e16ca4e840d3c3.png)
 
 Conclusion
 ==========
