@@ -23,7 +23,7 @@ Basic Concept
 
 -   Kibana
 
->   Let’s you visualize your Elasticsearch data and navigate the Elastic Stack.
+>   An open-source tool to visualize your ElasticSearch data and navigate the Elastic Stack.
 
 -   Amazon Elasticsearch Service
 
@@ -84,7 +84,7 @@ Solution Overview
 
 >   **Periodic Incremental Snapshots**
 
--   Repeat serval incremental snapshot and restore.
+-   Repeat several incremental snapshot and restore.
 
 >   **Final snapshot and Service Switchover**
 
@@ -178,7 +178,7 @@ Manual Snapshot Prerequisites on AWS
 
 >   *}*
 
->   In AWS IAM Console, you can find **Trust Relationship** deital here:
+>   In AWS IAM Console, you can find **Trust Relationship** detail here:
 
 ![](media/8294d97a833740011ef02621d9b8148a.png)
 
