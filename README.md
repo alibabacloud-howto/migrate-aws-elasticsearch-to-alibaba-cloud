@@ -1,6 +1,14 @@
 # Migrate AWS Elasticsearch to Alibaba Cloud
 
-[TOC]
+# Summary
+1. [Abstract](#abstract)
+2. [Introduction](#introduction)
+3. [Pre-Requisites](#pre-requisites)
+4. [Registering a Manual Snapshot Directory](#registering-a-manual-snapshot-directory)
+5. [Snapshot and Restore for the first time](#snapshot-and-restore-for-the-first-time)
+6. [Snapshot and Restore for the last time](#snapshot-and-restore-for-the-last-time)
+7. [Conclusion](#conclusion)
+8. [Further Reading](#further-reading)
 
 # Abstract
 
@@ -301,7 +309,7 @@ Registering Snapshot Repository
 ```
 Check result in KibanaDev Tools with request：
 ```
-GET \_snapshot
+GET _snapshot
 ```
 ![](media/a48b94be7b609e7b82777ce00aabea5f.png)
 
@@ -369,7 +377,7 @@ snapshot name snapshot_movies_1 which is assigned in AWS ES manual
 snapshot step.
 
 ```
-GET \_snapshot/eric-snapshot-repository/snapshot_movies_1
+GET _snapshot/eric-snapshot-repository/snapshot_movies_1
 ```
 
 ![](media/c9a3d4d113928c07065a40925dbdf451.png)
@@ -385,7 +393,7 @@ OSSimport tool.
 
 Perform following request on KibanaDev Tools
 ```
-POST \_snapshot/eric-snapshot-repository/snapshot_movies_1/_restore
+POST_snapshot/eric-snapshot-repository/snapshot_movies_1/_restore
 {
     "indices": "movies"
 }
@@ -453,7 +461,7 @@ POST /movies/_close
 
 GET movies/_stats
 
-POST \_snapshot/eric-snapshot-repository/snapshot_movies_2/_restore
+POST _snapshot/eric-snapshot-repository/snapshot_movies_2/_restore
 {
 "indices": "movies"
 }
