@@ -153,7 +153,7 @@ arn:aws:s3:::eric-es-index-backups
 You must have a role that specifies Amazon Elasticsearch
 Service, es.amazonaws.com, in a Servicestatement in its trust relationship,
 as shown in the following example:
-```
+```json
 {
     "Version": "2012-10-17",
     "Statement": [
@@ -187,7 +187,7 @@ the S3 bucket that is used to store manual snapshots for your Amazon ES
 domain. The following example specifies the ARN of
 the eric-es-index-backups bucket:
 
-```
+```json
 {
     "Version": "2012-10-17",
     "Statement": [
@@ -208,7 +208,7 @@ the eric-es-index-backups bucket:
             ],
             "Effect": "Allow",
             "Resource": [
-                "arn:aws:s3:::eric-es-index-backups/\"
+                "arn:aws:s3:::eric-es-index-backups/"
             ]
         }
     ]
@@ -245,7 +245,7 @@ Modify the values to your real value in
 following sample code, then copy content of attachment into a python file
 snapshot.py after customization
 
-```
+```python
 from boto.connection import AWSAuthConnection
 
 class ESConnection(AWSAuthConnection):
@@ -292,17 +292,16 @@ if __name__ == "__main__":
 This sample Python client requires that you install version 2.x of
 the boto package on the computer where you register your snapshot
 repository.
-```
-# wget
-https://pypi.python.org/packages/66/e7/fe1db6a5ed53831b53b8a6695a8f134a58833cadb5f2740802bc3730ac15/boto-2.48.0.tar.gz#md5=ce4589dd9c1d7f5d347363223ae1b970
-# tar zxvf boto-2.48.0.tar.gz
-# cd boto-2.48.0
-# python setup.py install
+```bash
+wget https://pypi.python.org/packages/66/e7/fe1db6a5ed53831b53b8a6695a8f134a58833cadb5f2740802bc3730ac15/boto-2.48.0.tar.gz#md5=ce4589dd9c1d7f5d347363223ae1b970
+tar zxvf boto-2.48.0.tar.gz
+cd boto-2.48.0
+python setup.py install
 ```
 
 ## Execute Python Client to Register Snapshot Directory
 
-```
+```python
 # python snapshot.py
 Registering Snapshot Repository
 {"acknowledged":true}
