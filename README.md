@@ -1,6 +1,6 @@
 # Migrate AWS Elasticsearch to Alibaba Cloud
 
-# Summary
+## Summary
 1. [Abstract](#abstract)
 2. [Introduction](#introduction)
 3. [Pre-Requisites](#pre-requisites)
@@ -10,7 +10,7 @@
 7. [Conclusion](#conclusion)
 8. [Further Reading](#further-reading)
 
-# Abstract
+## Abstract
 
 In this document, you can find technical solution of ElasticSearch index migration from AWS to Alibaba Cloud.
 
@@ -19,9 +19,9 @@ Reference architecture diagram is showed below:
 ![](images/13da02e1397c4873ac3eca589cf8ad35.png)
 
 
-# Introduction
+## Introduction
 
-## Basic Concept
+### Basic Concept
 
 
 -   Elasticsearch
@@ -66,7 +66,7 @@ to 6.x.
 versions of Elasticsearch. If any indices in a snapshot were created in an
 incompatible version, you will not be able restore the snapshot.
 
-## Solution Overview
+### Solution Overview
 
 ElasticSearch indices can be migrated with following steps:
 
@@ -101,9 +101,9 @@ Final snapshot and Service Switchover
 
 -   Service switchovers to Alibaba Cloud ES instance.
 
-# Pre-Requisites
+## Pre-Requisites
 
-## ElasticSearch service
+### ElasticSearch service
 
 Version number of AWS Elasticsearch is 5.5.2, located in the region Singapore.
 
@@ -112,7 +112,7 @@ now), located in Hangzhou.
 
 The demo index name is **movies**.
 
-## Manual Snapshot Prerequisites on AWS
+### Manual Snapshot Prerequisites on AWS
 
 
 Amazon ES takes daily automated snapshots of the primary index shards in a
@@ -135,7 +135,7 @@ attempt to take a snapshot.
 | IAM role         | Delegates permissions to Amazon Elasticsearch Service. The trust relationship for the role must specify Amazon Elasticsearch Service in the Principal statement. The IAM role also is required to register your snapshot repository with Amazon ES. Only IAM users with access to this role may register the snapshot repository. |
 | IAM policy       | Specifies the actions that Amazon S3 may perform with your S3 bucket. The policy must be attached to the IAM role that delegates permissions to Amazon Elasticsearch Service. The policy must specify an S3 bucket in a Resource statement.                                                                                       |
 
-### S3 Bucket
+#### S3 Bucket
 
 You need an S3 bucket to store manual snapshots. Make a note of its Amazon
 Resource Name (ARN). You need it for the following:
@@ -148,7 +148,7 @@ The following example shows an ARN for an S3 bucket:
 ```
 arn:aws:s3:::eric-es-index-backups
 ```
-### IAM Role
+#### IAM Role
 
 You must have a role that specifies Amazon Elasticsearch
 Service, es.amazonaws.com, in a Servicestatement in its trust relationship,
@@ -180,7 +180,7 @@ role by choosing Amazon EC2, following the steps to create the role, and
 then editing the role's trust relationships to es.amazonaws.com instead
 of ec2.amazonaws.com. 
 
-### IAM Policy
+#### IAM Policy
 
 You must attach an IAM policy to the IAM role. The policy specifies
 the S3 bucket that is used to store manual snapshots for your Amazon ES
@@ -223,12 +223,11 @@ Another readable view:
 
 ![](images/11883dc7d988bdbf91cea0a0f282e4f8.png)
 
-### Attach IAM Policy to IAM Role
+#### Attach IAM Policy to IAM Role
 
 ![](images/84f1c5545df547e1d118e73db10e9505.png)
 
-Registering a Manual Snapshot Directory
-=======================================
+## Registering a Manual Snapshot Directory
 
 You must register the snapshot directory with Amazon Elasticsearch Service
 before you can take manual index snapshots. This one-time operation requires
@@ -239,7 +238,7 @@ You can't use curl to perform this operation because it doesn't support AWS
 request signing. Instead, use the sample Python client to register your
 snapshot directory.
 
-## Modify Sample Python Client
+### Modify Sample Python Client
 
 Modify the values to your real value in
 following sample code, then copy content of attachment into a python file
@@ -287,7 +286,7 @@ if __name__ == "__main__":
 
 
 
-## Install Amazon Web Services Library boto-2.48.0
+### Install Amazon Web Services Library boto-2.48.0
 
 This sample Python client requires that you install version 2.x of
 the boto package on the computer where you register your snapshot
@@ -299,7 +298,7 @@ prompt:~$ cd boto-2.48.0
 prompt:~$ python setup.py install
 ```
 
-## Execute Python Client to Register Snapshot Directory
+### Execute Python Client to Register Snapshot Directory
 
 ```console
 prompt:~$ python snapshot.py
@@ -312,9 +311,9 @@ GET _snapshot
 ```
 ![](images/a48b94be7b609e7b82777ce00aabea5f.png)
 
-# Snapshot and Restore for the first time
+## Snapshot and Restore for the first time
 
-## Take a snapshot manually on AWS ES
+### Take a snapshot manually on AWS ES
 
 Following commands are all performed on KibanaDevTools, you can also
 perform them in the format of curl command in Linux.
@@ -337,7 +336,7 @@ Check snapshot files on the AWS S3 console:
 
 ![](images/c1688f6618baf43f0a24ba45443ffc13.png)
 
-## Pull snapshot data from AWS S3 to Alibaba Cloud OSS
+### Pull snapshot data from AWS S3 to Alibaba Cloud OSS
 
 In this step, you need pull snapshot data from AWS S3 bucket to Alibaba
 Cloud OSS.
@@ -349,10 +348,10 @@ After data transfer, check stored snapshot data on OSS console:
 
 ![](images/fb01981a005d9528de7779d3171dcf48.png)
 
-## Restore snapshot to Alibaba Cloud ES instance
+### Restore snapshot to Alibaba Cloud ES instance
 
 
-### Create Snapshot Repository
+#### Create Snapshot Repository
 
 Perform following request on KibanaDev Tools to create snapshot
 repository with same name, modify values with red color to your real ones.
@@ -388,7 +387,7 @@ OSSimport tool.
 "start_time_in_millis": 1519786844591
 "end_time_in_millis": 1519786846236,
 
-### Restore snapshots
+#### Restore snapshots
 
 Perform following request on KibanaDev Tools
 ```
@@ -406,9 +405,9 @@ there exists 3 records in the index movies, as same as AWS ES instance.
 
 ![](images/0a9f4d8e16615b42daba8299f02a1e03.png)
 
-# Snapshot and Restore for the last time
+## Snapshot and Restore for the last time
 
-## Create some sample data on AWS ES index movies
+### Create some sample data on AWS ES index movies
 
 From above, we know that there are only 3 records in the index movies, so we
 insert another 2 records.
@@ -420,7 +419,7 @@ or you can use request:
 GET movies/_count
 ```
 
-## Take another snapshot manually
+### Take another snapshot manually
 
 Check the snapshot status:
 
@@ -432,7 +431,7 @@ Check files on S3 bucket:
 
 If you check the folder indices, you can also find some differences.
 
-## Pull incremental snapshot data from AWS S3 to Alibaba Cloud OSS
+### Pull incremental snapshot data from AWS S3 to Alibaba Cloud OSS
 
 You can also use OSSImport tool to migrate data from S3 to OSS, because
 there are 2 snapshots files stored on S3 bucket now, so we try to migrate
@@ -451,7 +450,7 @@ configuration file local_job.cfg
 
 ![](images/2b32ee7b79b1902c5d7e2c609a22d61b.png)
 
-## Restore incremental snapshot
+### Restore incremental snapshot
 
 Can also follow the steps in the chapter **Restore snapshots**, but index **movies** is needed
 to be close first, then restore the snapshot, open again after the restore.
@@ -472,7 +471,7 @@ the index movies is as same as it is in AWS ES instance.
 
 ![](images/a6d84d2dde16ed06b0e16ca4e840d3c3.png)
 
-# Conclusion
+## Conclusion
 
 
 It’s possible to migrate AWS Elasticsearch service data to Alibaba Cloud
@@ -482,7 +481,7 @@ This migration technology solution requires AWS Elasticsearch instance to
 stop writing business requests during the migration and recovery of the last
 snapshot.
 
-# Further Reading
+## Further Reading
 
 -   <https://www.elastic.co/guide/en/elasticsearch/reference/current/modules-snapshots.html>
 
