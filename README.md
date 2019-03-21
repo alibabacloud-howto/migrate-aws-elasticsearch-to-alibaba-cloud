@@ -292,17 +292,17 @@ if __name__ == "__main__":
 This sample Python client requires that you install version 2.x of
 the boto package on the computer where you register your snapshot
 repository.
-```bash
-wget https://pypi.python.org/packages/66/e7/fe1db6a5ed53831b53b8a6695a8f134a58833cadb5f2740802bc3730ac15/boto-2.48.0.tar.gz#md5=ce4589dd9c1d7f5d347363223ae1b970
-tar zxvf boto-2.48.0.tar.gz
-cd boto-2.48.0
-python setup.py install
+```console
+prompt:~$ wget https://pypi.python.org/packages/66/e7/fe1db6a5ed53831b53b8a6695a8f134a58833cadb5f2740802bc3730ac15/boto-2.48.0.tar.gz#md5=ce4589dd9c1d7f5d347363223ae1b970
+prompt:~$ tar zxvf boto-2.48.0.tar.gz
+prompt:~$ cd boto-2.48.0
+prompt:~$ python setup.py install
 ```
 
 ## Execute Python Client to Register Snapshot Directory
 
 ```console
-foo@bar:~$ python snapshot.py
+prompt:~$ python snapshot.py
 Registering Snapshot Repository
 {"acknowledged":true}
 ```
