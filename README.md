@@ -301,8 +301,8 @@ python setup.py install
 
 ## Execute Python Client to Register Snapshot Directory
 
-```python
-# python snapshot.py
+```console
+foo@bar:~$ python snapshot.py
 Registering Snapshot Repository
 {"acknowledged":true}
 ```
