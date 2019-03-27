@@ -342,7 +342,7 @@ In this step, you need pull snapshot data from AWS S3 bucket to Alibaba
 Cloud OSS.
 
 Please refer to [Migrate data from Amazon S3 to Alibaba Cloud
-OSS](https://www.alibabacloud.com/help/doc-detail/64919.htm?spm=a3c0i.l31815en.b99.105.67c25139Y3tgnc)
+OSS](https://www.alibabacloud.com/help/doc-detail/64919.htm)
 
 After data transfer, check stored snapshot data on OSS console:
 
@@ -483,14 +483,14 @@ snapshot.
 
 ## Further Reading
 
--   <https://www.elastic.co/guide/en/elasticsearch/reference/current/modules-snapshots.html>
+-   https://www.elastic.co/guide/en/elasticsearch/reference/current/modules-snapshots.html
 
--   <https://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/es-managedomains-snapshots.html>
+-   https://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/es-managedomains-snapshots.html
 
--   <https://www.alibabacloud.com/help/doc-detail/64919.htm?spm=a3c0i.l31815en.b99.105.67c25139Y3tgnc>
+-   https://www.alibabacloud.com/help/doc-detail/64919.htm
 
--   <https://github.com/zhichen/elasticsearch-repository-oss/wiki/OSS%E5%BF%AB%E7%85%A7%E8%BF%81%E7%A7%BB?spm=a2c4g.11186623.2.3.2acd85>
+-   https://github.com/zhichen/elasticsearch-repository-oss/wiki/OSS%E5%BF%AB%E7%85%A7%E8%BF%81%E7%A7%BB
 
--   <https://github.com/zhichen/elasticsearch-repository-oss/wiki/OSS%E5%BF%AB%E7%85%A7%E8%BF%81%E7%A7%BB?spm=a2c4g.11186623.2.3.wfCX30>
+-   https://github.com/zhichen/elasticsearch-repository-oss/wiki/OSS%E5%BF%AB%E7%85%A7%E8%BF%81%E7%A7%BB
 
--   <https://www.alibabacloud.com/help/doc-detail/56990.htm?spm=a3c0i.o56990en.a1.4.5baa6605O1C9yZ>
+-   https://www.alibabacloud.com/help/doc-detail/56990.htm
